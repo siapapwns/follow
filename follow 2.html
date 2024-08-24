@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Process</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .step {
+            text-align: center;
+            background-color: #fff;
+            padding: 40px;
+            border-radius: 5px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        }
+
+        #step1 {
+            padding: 60px 80px; /* 첫 번째 칸의 크기를 더 크게 만듦 */
+            width: 200px; /* 넓이 지정 */
+        }
+
+        button {
+            margin: 10px;
+            padding: 10px 20px;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        #submitEmail {
+            background-color: #007bff;
+        }
+
+        #submitEmail:hover {
+            background-color:#0056b3;
+        }
+
+        #yesButton {
+            background-color: #007bff;
+        }
+
+        #yesButton:hover {
+            background-color: #0056b3;
+        }
+
+        #noButton {
+            background-color: #ff4c4c; /* 빨간색 */
+        }
+
+        #noButton:hover {
+            background-color: #e60000; /* 더 어두운 빨간색 */
+        }
+
+        input[type="email"] {
+            width: 80%; /* 넓이를 설정하여 가운데 정렬 */
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box; /* 패딩이 포함된 넓이 계산 */
+        }
+
+        #step3 span {
+            font-size: 50px;
+            color: green;
+        }
+    </style>
+</head>
+<body>
+    <div id="step1" class="step">
+        <h2>FOLLOW?</h2>
+        <button id="yesButton">YES</button>
+        <button id="noButton">NO</button>
+    </div>
+
+    <div id="step2" class="step" style="display: none;">
+        <h2>ENTER YOUR EMAIL</h2>
+        <input type="email" id="email" placeholder="Enter your email" required>
+        <button id="submitEmail">SUBMIT</button>
+    </div>
+
+    <div id="step3" class="step" style="display: none;">
+        <h2>Payment Complete</h2>
+        <span>&#10003;</span> <!-- Check icon -->
+    </div>
+
+    <div id="step4" class="step" style="display: none;">
+        <!-- 빈 화면 -->
+    </div>
+
+    <script>
+        document.getElementById('yesButton').addEventListener('click', function() {
+            document.getElementById('step1').style.display = 'none';
+            document.getElementById('step2').style.display = 'block';
+        });
+
+        document.getElementById('noButton').addEventListener('click', function() {
+            document.getElementById('step1').style.display = 'none';
+            document.getElementById('step4').style.display = 'block';
+        });
+
+        document.getElementById('submitEmail').addEventListener('click', function() {
+            const email = document.getElementById('email').value;
+            if (email.includes('@')) {
+                document.getElementById('step2').style.display = 'none';
+                document.getElementById('step3').style.display = 'block';
+            } else {
+                alert('Please enter a valid email.');
+            }
+        });
+    </script>
+</body>
+</html>
